@@ -15,8 +15,15 @@ public class CsvPokemonLoader implements PokemonLoader{
         return new CsvPokemonLoader(file);
     }
     @Override
-    public List<Pokemon> load() throws IOException {
-        return load(new BufferedReader(new FileReader(file)));
+    public List<Pokemon> load() {
+        try{
+            return load(new BufferedReader(new FileReader(file)));
+        } catch (FileNotFoundException e) {
+            return new ArrayList<Pokemon>();
+        } catch (IOException e) {
+            return new ArrayList<Pokemon>();
+        }
+
     }
 
     private List<Pokemon> load(BufferedReader bf) throws IOException {
